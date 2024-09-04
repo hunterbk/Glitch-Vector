@@ -1,0 +1,164 @@
+[gd_scene load_steps=17 format=3 uid="uid://6krpyxr64qr1"]
+
+[ext_resource type="Script" path="res://goal.gd" id="1_k0as6"]
+[ext_resource type="Texture2D" uid="uid://bsjv6xh5qev52" path="res://portal_bottom.png" id="2_ow87x"]
+[ext_resource type="Texture2D" uid="uid://cwm24iu1o5nod" path="res://portal_top_frame.png" id="3_e83dd"]
+[ext_resource type="Texture2D" uid="uid://b4ihntplxe5d7" path="res://portal_top.png" id="3_vcrfu"]
+[ext_resource type="Texture2D" uid="uid://bidm46oqay1ob" path="res://portal_bottom_frame.png" id="5_riigm"]
+
+[sub_resource type="Gradient" id="Gradient_wfj8d"]
+colors = PackedColorArray(0.588235, 0, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_3qxnn"]
+colors = PackedColorArray(0.588235, 0, 1, 1, 0, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_muh40"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.655545, 0.988492, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dyyr"]
+size = Vector2(336, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1rsa"]
+size = Vector2(336, 56)
+
+[sub_resource type="Gradient" id="Gradient_taqr4"]
+colors = PackedColorArray(0.212305, 0.212305, 0.212305, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ltkg"]
+gradient = SubResource("Gradient_taqr4")
+
+[sub_resource type="Gradient" id="Gradient_nuwhj"]
+colors = PackedColorArray(1, 0, 0, 1, 0.252202, 0, 0.0443573, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n0ir1"]
+gradient = SubResource("Gradient_nuwhj")
+fill = 1
+fill_from = Vector2(0.521368, 0.346154)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fiq13"]
+radius = 12.0
+height = 136.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iepwl"]
+radius = 12.0
+height = 136.0
+
+[node name="Goal" type="AnimatableBody2D"]
+texture_filter = 1
+script = ExtResource("1_k0as6")
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(-192, 0, 192, 0)
+gradient = SubResource("Gradient_wfj8d")
+
+[node name="Line2D2" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(-192, 0, -176, -64, -192, -128)
+gradient = SubResource("Gradient_3qxnn")
+texture_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(192, 0, 176, -64, 192, -128)
+gradient = SubResource("Gradient_muh40")
+texture_mode = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-197, -127, -181, -64, -197, -1, 197, -1, 181, -64, 197, -127, 187, -129, 171, -64, 186, -5, -185, -5, -171, -64, -187, -129)
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(0, -36)
+shape = SubResource("RectangleShape2D_8dyyr")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -68)
+shape = SubResource("RectangleShape2D_t1rsa")
+
+[node name="DirTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1.90735e-06, -60)
+scale = Vector2(6.4, 6.8)
+
+[node name="VisibleOnScreenNotifier2D2" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-3.8147e-06, -60)
+scale = Vector2(19.2, 6.8)
+
+[node name="TopFrame" type="Sprite2D" parent="."]
+clip_children = 1
+z_index = -2
+position = Vector2(0, -100)
+scale = Vector2(3, 2.25)
+texture = ExtResource("3_e83dd")
+
+[node name="Sprite2D" type="Sprite2D" parent="TopFrame"]
+position = Vector2(0, -1.49012e-06)
+scale = Vector2(2, 0.5)
+texture = SubResource("GradientTexture2D_5ltkg")
+
+[node name="Top" type="Sprite2D" parent="."]
+modulate = Color(0.532079, 0, 0.151671, 1)
+clip_children = 1
+z_index = -2
+position = Vector2(0, -96)
+scale = Vector2(3, 3)
+texture = ExtResource("3_vcrfu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Top"]
+modulate = Color(1, 0, 0.196078, 1)
+position = Vector2(-1.90735e-06, 10.6667)
+scale = Vector2(2, 0.666667)
+texture = SubResource("GradientTexture2D_n0ir1")
+
+[node name="Bottom" type="Sprite2D" parent="."]
+modulate = Color(0.532079, 0, 0.151671, 1)
+clip_children = 1
+z_index = -1
+position = Vector2(0, -40)
+scale = Vector2(3, 3)
+texture = ExtResource("2_ow87x")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Bottom"]
+modulate = Color(1, 0, 0.196078, 1)
+position = Vector2(-1.90735e-06, -5.33333)
+scale = Vector2(2, 0.666667)
+texture = SubResource("GradientTexture2D_n0ir1")
+
+[node name="BottomFrame" type="Sprite2D" parent="."]
+clip_children = 1
+z_index = -1
+position = Vector2(0, -40)
+scale = Vector2(3, 3)
+texture = ExtResource("5_riigm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="BottomFrame"]
+position = Vector2(0, 2.66667)
+scale = Vector2(2, 0.333333)
+texture = SubResource("GradientTexture2D_5ltkg")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-192, -88, -184, -88, -184, -40, -160, -8, 160, -8, 184, -40, 184, -88, 192, -88, 192, -40, 168, 0, 152, 8, -152, 8, -168, 0, -192, -40)
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-180, -60)
+shape = SubResource("CapsuleShape2D_fiq13")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(180, -60)
+shape = SubResource("CapsuleShape2D_iepwl")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="DirTimer" to="." method="change_direction"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D2" to="." method="completely_off_screen"]

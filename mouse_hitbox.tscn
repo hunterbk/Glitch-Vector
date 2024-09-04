@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxw5nu1gu8uom"]
+
+[ext_resource type="Script" path="res://mouse_hitbox.gd" id="1_24hqg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mm8gc"]
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uekmj"]
+radius = 72.0
+
+[node name="MouseHitbox" type="AnimatableBody2D"]
+script = ExtResource("1_24hqg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mm8gc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_uekmj")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

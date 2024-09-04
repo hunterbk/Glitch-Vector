@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2b2gux5oqdsf"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_775eo"]
+[ext_resource type="PackedScene" uid="uid://dxw5nu1gu8uom" path="res://mouse_hitbox.tscn" id="1_kdah5"]
+[ext_resource type="PackedScene" uid="uid://gft403htls20" path="res://hud.tscn" id="3_yvx16"]
+[ext_resource type="PackedScene" uid="uid://6krpyxr64qr1" path="res://goal.tscn" id="4_1626m"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_775eo")
+
+[node name="Balls" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Spawner1" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Spawner2" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1080, 0)
+
+[node name="MouseHitbox" parent="." instance=ExtResource("1_kdah5")]
+position = Vector2(554, 943)
+
+[node name="BallSpawnTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="HUD" parent="." instance=ExtResource("3_yvx16")]
+
+[node name="Goal" parent="." instance=ExtResource("4_1626m")]
+position = Vector2(448, 1938)
+
+[connection signal="timeout" from="BallSpawnTimer" to="." method="_on_ball_spawn_timer_timeout"]

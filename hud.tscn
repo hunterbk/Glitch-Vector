@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://gft403htls20"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_kqrby"]
+[ext_resource type="Theme" uid="uid://b3ipkgl8xjgof" path="res://ui/main_theme.tres" id="2_f2qfu"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_kqrby")
+
+[node name="FPS" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("2_f2qfu")
+text = "FPS"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_f2qfu")
+
+[node name="Spacer" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Score" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_f2qfu")
+theme_override_font_sizes/font_size = 48
+text = "Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Time" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 48
+text = "Time"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer3" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3d8mk1rr33r4"]
+
+[ext_resource type="Script" path="res://ball.gd" id="1_mhawe"]
+[ext_resource type="Texture2D" uid="uid://dvjfj2hgee0lr" path="res://white_ball.png" id="2_lrtty"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6gd66"]
+radius = 48.0
+
+[node name="Ball" type="RigidBody2D" groups=["Ball"]]
+physics_interpolation_mode = 1
+texture_filter = 1
+script = ExtResource("1_mhawe")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0.627451, 1, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("2_lrtty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_6gd66")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(12.8, 12.8)
+
+[node name="FreezeTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 1.5
+one_shot = true
+
+[node name="ExplodeTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="FreezeTimer" to="." method="_on_freeze_timer_timeout"]
+[connection signal="timeout" from="ExplodeTimer" to="." method="explode"]

@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://xswc5akmtr8m"]
+
+[ext_resource type="Theme" uid="uid://b3ipkgl8xjgof" path="res://ui/main_theme.tres" id="1_07gux"]
+[ext_resource type="Script" path="res://you_lose.gd" id="2_07hxf"]
+[ext_resource type="Texture2D" uid="uid://dkdw73ni0moin" path="res://ui/main_gradient_background.tres" id="2_hkoqg"]
+
+[node name="You Lose" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_07gux")
+script = ExtResource("2_07hxf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hkoqg")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/font_size = 160
+text = "You lost."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 40
+text = "Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TryAgain" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
+text = "Try Again"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TryAgain" to="." method="_on_try_again_pressed"]
